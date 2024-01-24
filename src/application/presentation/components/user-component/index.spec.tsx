@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import { UserComponent } from '..'
+import { UserComponent } from '.'
 
 describe('UserComponent', () => {
   test('should render and send the form', () => {
