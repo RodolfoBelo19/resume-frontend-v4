@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [scroll, setScroll] = useState(0);
@@ -34,7 +35,12 @@ export default function Home() {
       <div className="relative">
         <video className="absolute top-0 left-0 object-cover w-full h-full" src="/nebula.mp4" autoPlay loop muted />
         <div className="relative space-shadow z-10 py-48 flex items-center justify-center h-full text-white text-4xl font-bold">
-          Welcome to Outer Space!
+          <motion.div
+            initial={{ opacity: 0, y: -350 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 2 } }}
+          >
+            Hello World
+          </motion.div>
         </div>
       </div>
       <div className="h-screen flex justify-between py-32">
