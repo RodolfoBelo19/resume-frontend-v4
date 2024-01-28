@@ -5,7 +5,8 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
   moduleNameMapper: {
-    "\\.(css|less)$": "<rootDir>/styleMock.js"
+    "\\.(css|less)$": "<rootDir>/styleMock.js",
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   maxWorkers: 2,
 };
