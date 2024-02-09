@@ -1,14 +1,29 @@
-'use client'
+"use client";
 
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 
 const schema = z.object({
   company: z.string().min(3),
@@ -23,22 +38,26 @@ interface CareerComponentProps {
   onSubmit: (data: FormData) => void;
 }
 
-export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: propOnSubmit }) => {
+export const CareerComponent: React.FC<CareerComponentProps> = ({
+  onSubmit: propOnSubmit,
+}) => {
   const { register, handleSubmit } = useForm<FormData>({
-    resolver: zodResolver(schema)
-  })
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = (data: FormData) => {
-    console.log('res: ', data);
+    console.log("res: ", data);
     propOnSubmit(data);
   };
 
   return (
-    <div className='max-w-4xl mx-auto space-y-4 p-4'>
-      <div className='flex justify-between'>
-        <form className='flex gap-4'>
-          <Input placeholder='Company' />
-          <Button variant={'secondary'} type='submit'>Filter</Button>
+    <div className="max-w-4xl mx-auto space-y-4 p-4">
+      <div className="flex justify-between">
+        <form className="flex gap-4">
+          <Input placeholder="Company" />
+          <Button variant={"secondary"} type="submit">
+            Filter
+          </Button>
         </form>
         <Dialog>
           <DialogTrigger asChild>
@@ -49,7 +68,8 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
               <DialogHeader>
                 <DialogTitle>Create Career</DialogTitle>
                 <DialogDescription>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Doloribus, voluptate.
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
@@ -57,7 +77,10 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
                   <Label htmlFor="company" className="text-right">
                     Company
                   </Label>
-                  <Input id="company" value="Example Company" className="col-span-3"
+                  <Input
+                    id="company"
+                    value="Example Company"
+                    className="col-span-3"
                     {...register("company")}
                   />
                 </div>
@@ -65,7 +88,10 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
                   <Label htmlFor="position" className="text-right">
                     Position
                   </Label>
-                  <Input id="position" value="Software Developer" className="col-span-3"
+                  <Input
+                    id="position"
+                    value="Software Developer"
+                    className="col-span-3"
                     {...register("position")}
                   />
                 </div>
@@ -73,7 +99,10 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
                   <Label htmlFor="from" className="text-right">
                     From
                   </Label>
-                  <Input id="from" value="2019" className="col-span-3"
+                  <Input
+                    id="from"
+                    value="2019"
+                    className="col-span-3"
                     {...register("from")}
                   />
                 </div>
@@ -81,7 +110,10 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
                   <Label htmlFor="to" className="text-right">
                     To
                   </Label>
-                  <Input id="to" value="Present" className="col-span-3"
+                  <Input
+                    id="to"
+                    value="Present"
+                    className="col-span-3"
                     {...register("to")}
                   />
                 </div>
@@ -94,7 +126,7 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
         </Dialog>
       </div>
 
-      <Table className='bg-white rounded-lg'>
+      <Table className="bg-white rounded-lg">
         <TableHeader>
           <TableHead>Company</TableHead>
           <TableHead>Position</TableHead>
@@ -116,4 +148,4 @@ export const CareerComponent: React.FC<CareerComponentProps> = ({ onSubmit: prop
       </Table>
     </div>
   );
-}
+};

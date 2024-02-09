@@ -1,6 +1,10 @@
 import React from "react";
-import { CareerComponent } from "@/application/presentation/components/private-components/career-component";
+import { CareerComponent } from "@/presentation/components/private-components/career-component";
 
-export default function Career() {
-  return <CareerComponent />
+type CareerProps = {
+  onSubmit: (data: any) => void;
+};
+
+export default function Career({ onSubmit }: CareerProps) {
+  return <CareerComponent onSubmit={onSubmit} />;
 }

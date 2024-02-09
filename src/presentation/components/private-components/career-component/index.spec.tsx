@@ -21,7 +21,9 @@ describe("CareerComponent", () => {
     console.log("To input value:", toInput.value);
 
     fireEvent.change(companyInput, { target: { value: "Google" } });
-    fireEvent.change(positionInput, { target: { value: "Software Developer" } });
+    fireEvent.change(positionInput, {
+      target: { value: "Software Developer" },
+    });
     fireEvent.change(fromInput, { target: { value: "2022" } });
     fireEvent.change(toInput, { target: { value: "2024" } });
 
