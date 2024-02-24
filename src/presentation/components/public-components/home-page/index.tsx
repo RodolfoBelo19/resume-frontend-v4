@@ -1,56 +1,51 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
+import { Dock } from "../../dock";
+import { AboutMe } from "../../about-me";
+import { CareerInfo } from "../../career";
 
 export default function HomePage() {
-  const [scroll, setScroll] = useState(0);
+  const [showContainer, setShowContainer] = React.useState("");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScroll(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const element1 = document.querySelector(".element-1");
-    const element2 = document.querySelector(".element-2");
-
-    if (element1 && element2) {
-      if (scroll > 120) {
-        element1.classList.add("animate-slide-from-left");
-        element2.classList.add("animate-slide-from-right");
-      }
-    }
-  }, [scroll]);
+  const containers: any = {
+    career: <CareerInfo />,
+    "about-me": <AboutMe />,
+    linkedin: true,
+    github: true,
+    "contact-me": true,
+  };
+  const container = containers[showContainer];
 
   return (
-    <>
-      <div className="relative">
-        <video className="absolute top-0 left-0 object-cover w-full h-full" src="/nebula.mp4" autoPlay loop muted />
-        <div className="relative space-shadow z-10 py-48 flex items-center justify-center h-full text-white text-4xl font-bold">
-          <motion.div
-            initial={{ opacity: 0, y: -350 }}
-            animate={{ opacity: 1, y: 0, transition: { duration: 2 } }}
-          >
-            Hello World
-          </motion.div>
-        </div>
-      </div>
-      <div className="h-screen flex justify-between py-32">
-        <div className="element-1 p-24 invisible">
-          <div className="p-24 bg-white">element 1</div>
-        </div>
-        <div className="element-2 p-24 invisible">
-          <div className="p-24 bg-white">element 2</div>
-        </div>
-      </div>
-    </>
+    <div className="p-5 space-y-5">
+      {!container && (
+        <section className="p-5 mt-32 rounded-xl backdrop-blur-sm">
+          <div className="flex flex-col items-center justify-center">
+            <div className="p-1 rounded-full box-gradient-border">
+              <img src="profile.jpeg" className="w-56 rounded-full" />
+            </div>
+            <div className="flex gap-4 items-center justify-center">
+              <img src="hand-gif.gif" className="sm:w-24 w-12 rounded-full" />
+              <h1 className="sm:text-5xl text-2xl font-bold text-white">
+                Hey, I'm{" "}
+                <span className="font-bold box-gradient-title">
+                  Rodolfo Belo
+                </span>
+                !
+              </h1>
+            </div>
+            <h3 className="sm:text-xl text-md text-center sm:w-4/12 text-white">
+              I'm a full-stack developer with a passion for creating beautiful
+              and functional applications.
+            </h3>
+          </div>
+        </section>
+      )}
+
+      {container}
+
+      <Dock setIsOpen={setShowContainer} isOpen={showContainer} />
+    </div>
   );
 }
